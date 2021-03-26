@@ -7,8 +7,15 @@ Ubah Berita
 
 @section('header-scripts')
 <link rel="stylesheet" type="text/css"
+
     href="<?=url('/')?>/public/template/admin/assets/libs/summernote/dist/summernote-bs4.css">
 
+<style>
+.note-editor.note-frame .note-editing-area .note-editable {
+    color: #fff;
+    background-color: #212529 !important;
+}
+</style>
 @endsection
 
 @section('title-page')
@@ -114,6 +121,7 @@ Ubah Berita
         maxHeight: null, // set maximum height of editor
         focus: false // set focus to editable area after initializing summernote
     });
+
 
 </script>
 

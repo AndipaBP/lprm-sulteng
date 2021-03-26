@@ -8,7 +8,13 @@ Tambah Berita
 @section('header-scripts')
 <link rel="stylesheet" type="text/css"
     href="<?=url('/')?>/public/template/admin/assets/libs/summernote/dist/summernote-bs4.css">
+<style>
+.note-editor.note-frame .note-editing-area .note-editable {
+    color: #fff;
+    background-color: #212529 !important;
+}
 
+</style>
 @endsection
 
 @section('title-page')

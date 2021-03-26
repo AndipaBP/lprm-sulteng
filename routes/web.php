@@ -55,7 +55,7 @@ Route::get('/daftar-rental/{id}', [Home_Rental_Controller::class, 'detail_rental
 Route::get('/daftar-rental/{id}/{no_plat}', [Home_Rental_Controller::class, 'mobil_detail_rental']);
 Route::get('/daftar-rental/{id}/{no_plat}', [Home_Rental_Controller::class, 'mobil_detail_rental']);
 
-Route::get('/berita-selengkpanya', [Home_Berita_Controller::class, 'index']);
+Route::get('/berita-selengkapnya', [Home_Berita_Controller::class, 'index']);
 Route::get('/berita/{slug}', [Home_Berita_Controller::class, 'detail_berita']);
 
 Route::get('/tentang-kami', [Home_Profil_Controller::class, 'tentang_kami']);

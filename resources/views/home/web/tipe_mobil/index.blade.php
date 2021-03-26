@@ -20,7 +20,7 @@
             @foreach($mobil as $row)
             <div class="col-4">
                 <div
-                    style='margin-bottom: 1em; background: white; box-shadow: 1px 1px 11px #DAD5CE; border-radius: 12px; padding: 1em 1.5em; background-size: cover; color:black;'>
+                    style='margin-bottom: 1em; background: white; border-radius: 12px; padding: 1em 1.5em; background-size: cover; color:black;'>
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             @if($row->foto_mobil->count() == '0')
