@@ -74,22 +74,23 @@ class SuperAdmin_Mobil_Controller extends Controller
             $mobil->tipe_mobil_id = $request->tipe_mobil;
             $mobil->tahun_mobil = $request->tahun_mobil;
             $mobil->no_plat = $request->plat_mobil;
-            $mobil->kapasitas = $request->kapasitas_mobil;
-            $mobil->bagasi = $request->bagasi_mobil;
+            if($request->kapasitas_mobil){
+                $mobil->kapasitas = $request->kapasitas_mobil;
+            }
             $mobil->harga_per_hari = $request->harga_per_hari;
             $mobil->status = $request->status_mobil;
             $mobil->save();
 
-            $fitur = $request->get('fitur_mobil');	
+            // $fitur = $request->get('fitur_mobil');	
 
-            Fitur_mobil::where('mobil_id',$id)->delete();
+            // Fitur_mobil::where('mobil_id',$id)->delete();
 
-            for ($i = 0; $i < count($fitur); $i++) {
-                $fitur_mobil = new Fitur_mobil;
-                $fitur_mobil->mobil_id = $id;
-                $fitur_mobil->fitur_id = $fitur[$i];
-                $fitur_mobil->save();
-            }
+            // for ($i = 0; $i < count($fitur); $i++) {
+            //     $fitur_mobil = new Fitur_mobil;
+            //     $fitur_mobil->mobil_id = $id;
+            //     $fitur_mobil->fitur_id = $fitur[$i];
+            //     $fitur_mobil->save();
+            // }
             
 
             Alert::success('Berhasil', 'Informasi Mobil Berhasil Diubah');

@@ -39,7 +39,7 @@ Tambah Rental
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <label for="username">Username<span
+                                        <label for="username">No. ID Regitrasi / Username<span
                                                 class="badge badge-danger ml-2">Wajib</span></label>
                                         <input type="text" class="form-control" id="username" name="username"
                                             onkeypress="return AvoidSpace(event)" required placeholder="Username...">
@@ -71,7 +71,15 @@ Tambah Rental
                         <div class="">
                             <h4 class="card-title">INFORMASI RENTAL</h4>
                             <div class="row">
-                                <div class="col-9">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="pemilik_rental">Pemilik Rental<span
+                                                class="badge badge-danger ml-2">Wajib</span></label>
+                                        <input type="text" class="form-control" id="pemilik_rental" name="pemilik_rental"
+                                            required placeholder="Pemilik Rental...">
+                                    </div>
+                                </div>
+                                <div class="col-6">
                                     <div class="form-group">
                                         <label for="nama_rental">Nama Rental<span
                                                 class="badge badge-danger ml-2">Wajib</span></label>

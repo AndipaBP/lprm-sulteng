@@ -96,11 +96,11 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <div c style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                         <p style="color: black !important; text-align: center;">Silahkan Download Terlebih Dahulu
                             <br>Aplikasi <b>Kitapura</b><span style="font-style:italic; ">mall</span>.</p>
-                        <h3 style="font-weight: 600; color: black !important;">Download Disini</h3>
-                        <img src="<?=url('/')?>/public/images/home/download_playstore.svg" style="width: 70%;">
+                        <h3 style="font-weight: 600; color: black !important;"><a href="https://play.google.com/store/apps/details?id=com.kailinusantara.kitapuramall" style="color:black;">Download Disini</a></h3>
+                        <a href="https://play.google.com/store/apps/details?id=com.kailinusantara.kitapuramall" style="text-align:center;"><img src="<?=url('/')?>/public/images/home/download_playstore.svg" style="width: 70%;"></a>
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
             <div class="row">
                 <div class="col-xl-6 col-lg-7 order-lg-2">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <div class="footer-widget">
                                 <h2>About us</h2>
                                 <ul>
@@ -122,6 +122,14 @@
                                     <li><a href="">Struktur Organisasi</a></li>
                                     <li><a href="">Rental Kami</a></li>
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="footer-widget">
+                                <a href="https://play.google.com/store/apps/details?id=com.kailinusantara.kitapuramall">
+                                    <img src="<?=url('/')?>/public/images/home/download_playstore.svg"
+                                        style="width: 100%;">
+                                </a>
                             </div>
                         </div>
 

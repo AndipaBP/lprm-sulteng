@@ -100,7 +100,7 @@
                                     Pengaturan Akun</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{url('/logout')}}"><i
-                                        class="fa fa-power-off mr-1 ml-1"></i> Logout</a>
+                                        class="fa fa-power-off mr-1 ml-1"></i> Keluar</a>
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -149,9 +149,7 @@
                                 <li class="sidebar-item"><a href="{{url('/superadmin/spesifikasi-mobil/tipe')}}"
                                         class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu">
                                             Tipe</span></a></li>
-                                <li class="sidebar-item"><a href="{{url('/superadmin/spesifikasi-mobil/fitur')}}"
-                                        class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu">
-                                            Fitur</span></a></li>
+                         
                             </ul>
                         </li>
                         <div class="devider"></div>

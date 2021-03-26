@@ -21,8 +21,12 @@ class Rental extends Model
         return $this->hasMany(Foto_rental::class);
     }
 
+    public function video_rental(){
+        return $this->hasOne(Video_rental::class);
+    }
+
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'users_id');
     }
 
     public function kelurahan(){

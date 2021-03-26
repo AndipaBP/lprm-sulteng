@@ -35,6 +35,10 @@ Atur Rental
                             class="hidden-sm-up"><i class="ti-camera"></i></span> <span class="hidden-xs-down">Foto
                             Rental</span></a>
                 </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#video-rental" role="tab"><span
+                            class="hidden-sm-up"><i class="ti-camera"></i></span> <span class="hidden-xs-down">Video
+                            Rental</span></a>
+                </li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content tabcontent-border">
@@ -48,7 +52,15 @@ Atur Rental
                                     <h3>Informasi Rental</h3>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-9">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="pemilik_rental">Pemilik Rental</label>
+                                                <input type="text" class="form-control" id="pemilik_rental"
+                                                    name="pemilik_rental" value="{{$rental->pemilik}}" required
+                                                    placeholder="Pemilik Rental...">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
                                             <div class="form-group">
                                                 <label for="nama_rental">Nama Rental</label>
                                                 <input type="text" class="form-control" id="nama_rental"
@@ -62,7 +74,7 @@ Atur Rental
                                             <div class="form-group">
                                                 <label for="no_hp">No. HP</label>
                                                 <input type="text" class="form-control" id="no_hp" name="no_hp" required
-                                                    maxlength="12" value="{{$rental->nomor_hp}}" placeholder="No. HP..">
+                                                    maxlength="12" value="0{{$rental->nomor_hp}}" placeholder="No. HP..">
                                             </div>
                                         </div>
                                     </div>
@@ -151,6 +163,54 @@ Atur Rental
                     </div>
 
                 </div>
+                <div class="tab-pane" id="video-rental" role="tabpanel">
+                    <div class="p-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex flex-row">
+                                    <div class="mr-auto align-self-center">
+                                        <h3>Video Rental</h3>
+                                    </div>
+                                </div>
+                                <hr>
+                                @if(is_null($rental->video_rental))
+                                <form action="{{url()->current()}}/video-rental/simpan" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label for="video_rental">Silahkan Masukkan Link Video Dari
+                                                    Youtube</label>
+                                                <input type="text" class="form-control" id="video_rental"
+                                                    name="video_rental" required placeholder="Video Rental...">
+                                                <small class="form-text text-muted">Contoh :
+                                                    https://www.youtube.com/watch?v=6ZEbvTUz8F8 atau
+                                                    https://youtu.be/dsasadsds</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-dark">Simpan</button>
+                                </form>
+                                @else
+                                <div class="row">
+                                    <div class="col-12">
+                                        <iframe width="100%" height="360" src="https://www.youtube.com/embed/{{$video}}"
+                                            frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen style="border-radius: 1em;"></iframe>
+                                        <button type="button" data-toggle="modal" data-target="#modal-hapus-video"
+                                            onclick="hapus_video('{{$rental->video_rental->id}}')"
+                                            class="btn btn-sm btn-danger btn-block btn-rounded">Hapus</button>
+                                    </div>
+                                </div>
+
+                                @endif
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -225,6 +285,37 @@ Atur Rental
     </div>
 </div>
 
+<div class="modal fade" id="modal-hapus-video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fas fa-trash fa-4x mb-3 "></i>
+                    <h3>Apakah Yakin Ingin Menghapus Video ?
+                    </h3>
+
+                </div>
+            </div>
+
+            <div class="modal-footer justify-content-between ">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <form action="{{url()->current()}}/hapus-video" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="rental_id" value="{{$rental->id}}" required>
+                    <input type="hidden" name="id_hapus_video" id="id_hapus_video" required>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
 @endsection
 
 @section('footer-scripts')
@@ -260,6 +351,10 @@ Atur Rental
 
     function hapus_data(id) {
         $("#id_hapus").val(id);
+    }
+
+    function hapus_video(id) {
+        $("#id_hapus_video").val(id);
     }
 
 </script>

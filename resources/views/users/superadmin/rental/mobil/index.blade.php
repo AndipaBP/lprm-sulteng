@@ -68,7 +68,7 @@ Mobil | {{$rental->nama}}
                                     </td>
                                     <td>{{$row->pemilik}}
                                         <br>
-                                        No. HP : {{$row->no_hp_pemilik}}
+                                        No. HP : 0{{$row->no_hp_pemilik}}
                                     </td>
                                     <td>
                                         {{ucfirst($row->status)}}

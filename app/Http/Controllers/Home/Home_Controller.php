@@ -9,6 +9,7 @@ use App\Models\Merk_mobil;
 use App\Models\Tipe_mobil;
 use App\Models\Mobil;
 use App\Models\Rental;
+use App\Models\Berita;
 use Alert;
 
 class Home_Controller extends Controller
@@ -20,8 +21,10 @@ class Home_Controller extends Controller
         $tipe = Tipe_mobil::orderBy('nama', 'asc')->get();
         $rental = Rental::all();
         $mobil = Mobil::all();
+        $berita = Berita::limit(6)->get();
 
-		return view('home/web/index', compact('tipe','rental','mobil'));
+        // dd($berita);
+		return view('home/web/index', compact('tipe','rental','mobil','berita'));
     }
 
     public function tipe_mobil($id){

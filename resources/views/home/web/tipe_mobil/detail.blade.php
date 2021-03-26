@@ -57,23 +57,15 @@
                             style="width: 1em;">&nbsp;<span class="text-dark"
                             style="padding-top: 0.2em;">{{$mobil->kapasitas}}
                             Orang</span>&nbsp;&nbsp;&nbsp;
-                        <img src="<?=url('/')?>/public/images/icon_svg/bagasi_pink.svg"
-                            style="width: 1.2em;">&nbsp;<span class="text-dark"
-                            style="padding-top: 0.2em;">{{$mobil->kapasitas}}
-                            Bagasi</span>
                     </div>
                     <div style="font-size: 0.7em; width: 100%; display: flex; align-items: center; color: #959595;">
                         <img src="<?=url('/')?>/public/images/icon_svg/car_pink.svg" style="width: 1em;">&nbsp;<span
                             class="text-dark" style="padding-top: 0.2em;">Tahun {{$mobil->tahun_mobil}} atau
                             setelahnya</span>&nbsp;&nbsp;&nbsp;
                     </div>
-                    <div style="font-size: 0.7em; color: #959595; margin-top: 1em;">Fitur</div>
-                    <div style="display: flex;">
-                        @foreach($mobil->fitur_mobil as $row)
-                        <div
-                            style="border: #FF435E; background: #FF435E; color: white; font-size: 0.7em; padding: 0.3em 1em; border-radius: 1em; margin-right: 0.5em;">
-                            {{$row->fitur->nama}}</div>
-                        @endforeach
+                    <div
+                        style=" background: #FF435E; padding: 0.6em; text-align: center; color: white; margin-bottom: 0.5em; margin-top: 1em; border-radius:15px;">
+                        Mulai Dari Rp. {{$mobil->harga_per_hari}} Per/Hari
                     </div>
                 </div>
             </div>
@@ -104,9 +96,17 @@
                         {{$mobil->rental->kelurahan->kelurahan}},
                         {{ucwords($mobil->rental->kelurahan->kecamatan->nama)}}, KOTA PALU</div>
                     <div style="color: #828282; font-size: 0.85em;">{{$mobil->rental->alamat}}</div>
+                    @if (($mobil->rental->lat == null) && ($mobil->rental->lng == null))
                     <div
                         style="background: #FF435E; padding: 0.3em; text-align: center; color: white; margin-bottom: 0.5em; margin-top: 1em; border-radius:15px;">
-                        Lihat Lokasi di Peta</div>
+                        Belum Memiliki Lokasi di Peta</div>
+                    @else
+                    <a href="https://www.google.com/maps/search/?api=1&query={{$mobil->rental->lat}},{{$mobil->rental->lng}}">
+                        <div
+                            style="background: #FF435E; padding: 0.3em; text-align: center; color: white; margin-bottom: 0.5em; margin-top: 1em; border-radius:15px;">
+                            Lihat Lokasi di Peta</div>
+                    </a>
+                    @endif
                 </div>
                 <div data-toggle="modal" data-target="#modal-pesan"
                     style="cursor: pointer; background: #FF435E; padding: 0.6em; text-align: center; color: white; margin-bottom: 0.5em; margin-top: 1em; border-radius:15px;">

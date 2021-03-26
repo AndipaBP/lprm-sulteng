@@ -9,6 +9,7 @@ use App\Models\Merk_mobil;
 use App\Models\Tipe_mobil;
 use App\Models\Mobil;
 use App\Models\Rental;
+use App\Models\Video_rental;
 use Alert;
 
 class Home_Rental_Controller extends Controller
@@ -30,7 +31,24 @@ class Home_Rental_Controller extends Controller
 
             $mobil = Mobil::where('rental_id', $id)->paginate(12);
 
-            return view('home/web/daftar_rental/detail', compact('rental','mobil'));
+            $daftar_video = Video_rental::where('rental_id', $id)->first();
+
+            $video = '';
+    
+            if($daftar_video){
+    
+                $link =  $daftar_video->link;
+    
+                if(preg_match('/youtube.com/', $link)){
+                    $video = trim(substr($link, strpos($link, '=')+1));
+                }
+                else{
+                    $video = trim(substr($link, strpos($link, '.be/')+4));
+                }
+    
+            }
+
+            return view('home/web/daftar_rental/detail', compact('rental','mobil','video'));
 
         }
         else{

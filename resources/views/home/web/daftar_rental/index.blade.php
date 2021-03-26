@@ -17,9 +17,32 @@ LPRM SULTENG
         </div>
         <div class="row">
             @foreach($rental as $row)
-            <div class="col-4">
+            <div class="col-4 mb-3">
                 <div class=""
                     style="padding: 1.2em 1.2em 1.2em 1.2em;background: white; border-radius: 12px; color:black;">
+                    <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                @if($row->foto_rental->count() == '0')
+                                <div class="swiper-slide">
+                                    <div
+                                        style='height: 12em; margin-bottom: 1.5em; background: linear-gradient(180deg, rgba(16, 26, 25, 0) 8%, #111B1A 100%), url("<?=url('/')?>/public/images/home/image_not_available.png"); filter: drop-shadow(1px 1px 5px #000000); border-radius: 12px; display: flex; align-items: flex-start; flex-direction: column; justify-content: flex-end; padding-right: 1em; background-size: cover; width: 100%;'>
+                                    </div>
+                                </div>
+                                @else
+                                @foreach($row->foto_rental as $foto)
+                                <div class="swiper-slide">
+                                    <div
+                                        style='height: 12em; margin-bottom: 1.5em; background: linear-gradient(180deg, rgba(16, 26, 25, 0) 8%, #111B1A 100%), url("<?=url('/')?>/public/upload/rental/{{$row->id}}/img/{{$foto->foto}}"); filter: drop-shadow(1px 1px 5px #000000); border-radius: 12px; display: flex; align-items: flex-start; flex-direction: column; justify-content: flex-end; padding-right: 1em; background-size: cover; width: 100%;'>
+                                    </div>
+                                </div>
+                                @endforeach
+
+                                @endif
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
                     <div style="display: flex; align-items: center;">
                         <div style="width: 20%;">
                             <img src="<?=url('/')?>/public/images/rental.svg" style="width: 100%;">
@@ -61,5 +84,15 @@ LPRM SULTENG
 
 
 @section('footer-scripts')
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
 
+</script>
 @endsection

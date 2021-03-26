@@ -58,15 +58,11 @@ class SuperAdmin_Rental_Mobil_Controller extends Controller
 			'tipe_mobil' => 'required',
 			'tahun_mobil' => 'required',
 			'plat_mobil' => 'required',
-			'fitur_mobil' => 'required',
-			'kapasitas_mobil' => 'required',
-			'bagasi_mobil' => 'required',
             'harga_per_hari' => 'required'
 
 		]);
 
         $mobil_id = $this->autocode('mobil');  
-        
 		$mobil = new Mobil;
         $mobil->id = $mobil_id;
         $mobil->pemilik = $request->nama_pemilik;
@@ -75,21 +71,25 @@ class SuperAdmin_Rental_Mobil_Controller extends Controller
         $mobil->tipe_mobil_id = $request->tipe_mobil;
         $mobil->tahun_mobil = $request->tahun_mobil;
         $mobil->no_plat = $request->plat_mobil;
-        $mobil->kapasitas = $request->kapasitas_mobil;
-        $mobil->bagasi = $request->bagasi_mobil;
+
         $mobil->harga_per_hari = $request->harga_per_hari;
         $mobil->status = "ready";
         $mobil->rental_id = $id;
+        
+        if($request->kapasitas_mobil){
+            $mobil->kapasitas = $request->kapasitas_mobil;
+        }
+        
         $mobil->save();
 
-        $fitur = $request->get('fitur_mobil');	
+        // $fitur = $request->get('fitur_mobil');	
 
-        for ($i = 0; $i < count($fitur); $i++) {
-			$fitur_mobil = new Fitur_mobil;
-			$fitur_mobil->mobil_id = $mobil_id;
-			$fitur_mobil->fitur_id = $fitur[$i];
-			$fitur_mobil->save();
-		}
+        // for ($i = 0; $i < count($fitur); $i++) {
+		// 	$fitur_mobil = new Fitur_mobil;
+		// 	$fitur_mobil->mobil_id = $mobil_id;
+		// 	$fitur_mobil->fitur_id = $fitur[$i];
+		// 	$fitur_mobil->save();
+		// }
 
         Alert::success('Berhasil', 'Mobil Berhasil Ditambahkan');
         return redirect('/superadmin/rental/'.$id.'/mobil');
@@ -125,7 +125,6 @@ class SuperAdmin_Rental_Mobil_Controller extends Controller
 
     public function simpan_detail_mobil($id, $id2, $jenis, Request $request){
 
-
         // dd($request->all());
 
         if($jenis == 'foto-mobil'){
@@ -148,21 +147,22 @@ class SuperAdmin_Rental_Mobil_Controller extends Controller
             $mobil->tipe_mobil_id = $request->tipe_mobil;
             $mobil->tahun_mobil = $request->tahun_mobil;
             $mobil->no_plat = $request->plat_mobil;
-            $mobil->kapasitas = $request->kapasitas_mobil;
-            $mobil->bagasi = $request->bagasi_mobil;
+            if($request->kapasitas_mobil){
+                $mobil->kapasitas = $request->kapasitas_mobil;
+            }
             $mobil->harga_per_hari = $request->harga_per_hari;
             $mobil->status = $request->status_mobil;
             $mobil->save();
 
-            $fitur = $request->get('fitur_mobil');	
-            Fitur_mobil::where('mobil_id',$id2)->delete();
+            // $fitur = $request->get('fitur_mobil');	
+            // Fitur_mobil::where('mobil_id',$id2)->delete();
 
-            for ($i = 0; $i < count($fitur); $i++) {
-                $fitur_mobil = new Fitur_mobil;
-                $fitur_mobil->mobil_id = $id2;
-                $fitur_mobil->fitur_id = $fitur[$i];
-                $fitur_mobil->save();
-            }
+            // for ($i = 0; $i < count($fitur); $i++) {
+            //     $fitur_mobil = new Fitur_mobil;
+            //     $fitur_mobil->mobil_id = $id2;
+            //     $fitur_mobil->fitur_id = $fitur[$i];
+            //     $fitur_mobil->save();
+            // }
             
 
             Alert::success('Berhasil', 'Informasi Mobil Berhasil Diperbarui');

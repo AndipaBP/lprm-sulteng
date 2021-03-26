@@ -89,34 +89,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="fitur_mobil">Fitur Mobil<span
-                                                        class="badge badge-danger ml-2">Wajib</span></label>
-                                                <select class="select2 form-control" id="fitur_mobil"
-                                                    name="fitur_mobil[]" multiple="multiple" required
-                                                    style="width: 100%; height:45px;">
-                                                    @foreach($fitur as $row)
-                                                    @php $find = false; @endphp
-                                                    @foreach($mobil->fitur_mobil as $item)
-                                                    @if ($row->id == $item->fitur_id)
-                                                    @php $find = true; @endphp
-                                                    break;
-                                                    @endif
-                                                    @endforeach
-                                                    @if ($find == true)
-                                                    <option value="{{$row->id}}" selected>{{$row->nama}}</option>
-                                                    @else
-                                                    <option value="{{$row->id}}">{{$row->nama}}</option>
-                                                    @endif
-                                                    @endforeach
-                                                </select>
-                                                <small class="form-text text-muted">Silakan Beberapa Pilih Beberapa
-                                                    Fitur
-                                                    Mobil</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-3">
+                                        <div class="col-4">
                                             <div class="form-group">
                                                 <label for="kapasitas_mobil">Kapasitas<span
                                                         class="badge badge-danger ml-2">Wajib</span></label>
@@ -124,21 +97,10 @@
                                                     name="kapasitas_mobil" required placeholder="Kapasitas Mobil..."
                                                     value="{{$mobil->kapasitas}}">
                                                 <div class="d-flex justify-content-end">
-                                                    <small class="form-text text-muted">/Penumpang</small>
+                                                    <small class="form-text text-muted">/Orang</small>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-3">
-                                            <div class="form-group">
-                                                <label for="bagasi_mobil">Bagasi Mobil<span
-                                                        class="badge badge-danger ml-2">Wajib</span></label>
-                                                <input type="number" class="form-control" id="bagasi_mobil"
-                                                    name="bagasi_mobil" required placeholder="Bagasi Mobil..."
-                                                    value="{{$mobil->bagasi}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <label for="harga_per_hari">Harga<span
@@ -208,7 +170,7 @@
                                                         class="badge badge-danger ml-2">Wajib</span></label>
                                                 <input type="number" class="form-control" id="no_hp_pemilik"
                                                     name="no_hp_pemilik" required placeholder="No. HP Pemilik..."
-                                                    value="{{$mobil->no_hp_pemilik}}">
+                                                    value="0{{$mobil->no_hp_pemilik}}">
                                             </div>
 
                                         </div>

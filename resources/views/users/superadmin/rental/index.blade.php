@@ -46,6 +46,8 @@ Rental
                         <table id="config-table" class="table display table-bordered table-striped no-wrap">
                             <thead>
                                 <tr>
+                                    <th>No. ID Regitrasi</th>
+                                    <th>Pemilik</th>
                                     <th>Nama Rental</th>
                                     <th>No. HP</th>
                                     <th>Daftar Mobil</th>
@@ -55,9 +57,14 @@ Rental
                             <tbody>
                                 @foreach($rental as $row)
                                 <tr>
-
-                                    <td>{{$row->nama}}</td>
-                                    <td>{{$row->nomor_hp}}</td>
+                                    <td>{{$row->user->username}}</td>
+                                    <td>{{$row->pemilik}}</td>
+                                    <td>
+                                    {{$row->nama}}
+                                    <br>
+                                    Alamat : {{$row->alamat}}
+                                    </td>
+                                    <td>0{{$row->nomor_hp}}</td>
                                     <td><a href="{{url()->current()}}/{{$row->id}}/mobil"
                                             class="btn btn-block btn-outline-info"><i class="fas fa-car"></i>
                                             {{$row->mobil->count()}}

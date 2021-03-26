@@ -4,6 +4,27 @@
 LPRM SULTENG
 @endsection
 
+<?php
+// fungsi untuk konversi tanggal ke indonesia
+function tgl_indo($tanggal){
+  $bulan = array (
+    1 =>   'Januari',
+    'Februari',
+    'Maret',
+    'April',
+    'Mei',
+    'Juni',
+    'Juli',
+    'Agustus',
+    'September',
+    'Oktober',
+    'November',
+    'Desember'
+  );
+  $pecahkan = explode('-', $tanggal);     
+  return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+}
+?>
 
 @section('header-scripts')
 
@@ -21,7 +42,8 @@ LPRM SULTENG
                             <h2 style="font-size: 7em;">Mobil ?</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                                 ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
-                            <a href="#" data-toggle="modal" data-target="#modal-pesan" class="site-btn">Pesan Sekarang</a>
+                            <a href="#" data-toggle="modal" data-target="#modal-pesan" class="site-btn">Pesan
+                                Sekarang</a>
                             <a href="#" class="site-btn sb-c2">Jadi Anggota</a>
                         </div>
                     </div>
@@ -53,8 +75,12 @@ LPRM SULTENG
                 style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                 <p style="color: white !important; text-align: center;">Rental mobil mudah, menggunakan <br>aplikasi
                     <b>kitapura</b><span style="font-style:italic; ">mall</span>.</p>
-                <h3 style="font-weight: 600; color: white !important;">Download Disini</h3>
-                <img src="<?=url('/')?>/public/images/home/download_playstore.svg" style="width: 70%;">
+                <a href="https://play.google.com/store/apps/details?id=com.kailinusantara.kitapuramall"
+                    style="text-align:center;color:black;">
+                    <h3 style="font-weight: 600; color: white !important;"> Download Disini</h3>
+                    <img src="<?=url('/')?>/public/images/home/download_playstore.svg" style="width: 70%;">
+                </a>
+
             </div>
         </div>
     </div>
@@ -185,7 +211,8 @@ LPRM SULTENG
                                 aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan
                                 lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            <a href="#" data-toggle="modal" data-target="#modal-pesan" class="site-btn">Coba Sekarang</a>
+                            <a href="#" data-toggle="modal" data-target="#modal-pesan" class="site-btn">Coba
+                                Sekarang</a>
                         </div>
                     </div>
                     <div class="col-lg-6" style="height: 100%;">
@@ -220,48 +247,47 @@ LPRM SULTENG
             <h2 style="width: 100%; text-align: center;">Berita</h2>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-sm-6">
+            @if($berita->count() != '0')
+
+            @foreach($berita as $row)
+            <div class="col-lg-4 col-sm-6 mb-2">
                 <div class="concept-item" style="display: flex; justify-content: center; flex-direction: column;">
                     <div style="width: 100%;padding-top: 0.2em; margin-bottom: 0em; border-radius: 1em; padding: 0;">
-                        <img src="<?=url('/')?>/public/images/berita/berita_1.jpg" alt=""
-                            style="width: 100%; border-radius: 0;">
+                        <img src="<?=url('/')?>/public/upload/berita/{{$row->id}}/{{$row->foto}}" alt=""
+                            style="width: 100%; border-radius: 0.5em;">
                     </div>
-                    <div style="display: flex; justify-content: flex-start; font-size: 0.8em; align-items: center;">17
-                        Maret 2021</div>
+            
+                    <div style="display: flex; justify-content: flex-start; font-size: 0.8em; text-align:left;">
+                        {{ tgl_indo(date('Y-m-d', strtotime($row->created_at))) }} | {{$row->judul}} </div>
+                        
                     <div
                         style="line-height: 1.2em; width: 100%; font-size: 0.95em; margin-top: 0.8em; text-align: justify;">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam laoreet eget velit dui nisl
-                        aliquam tellus mi.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="concept-item" style="display: flex; justify-content: center; flex-direction: column;">
-                    <div style="width: 100%;padding-top: 0.2em; margin-bottom: 0em; border-radius: 1em; padding: 0;">
-                        <img src="<?=url('/')?>/public/images/berita/berita_1.jpg" alt=""
-                            style="width: 100%; border-radius: 0;">
+                        <a href="{{url('/berita/')}}/{{$row->slug}}"
+                            style="background:#FF435E; color: white; padding: 0.3em 2em; font-size: 0.7em; border-radius: 2em;">Baca
+                            Sekarang
+                        </a>
                     </div>
-                    <div style="display: flex; justify-content: flex-start; font-size: 0.8em; align-items: center;">17
-                        Maret 2021</div>
-                    <div
-                        style="line-height: 1.2em; width: 100%; font-size: 0.95em; margin-top: 0.8em; text-align: justify;">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam laoreet eget velit dui nisl
-                        aliquam tellus mi.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="concept-item" style="display: flex; justify-content: center; flex-direction: column;">
-                    <div style="width: 100%;padding-top: 0.2em; margin-bottom: 0em; border-radius: 1em; padding: 0;">
-                        <img src="<?=url('/')?>/public/images/berita/berita_1.jpg" alt=""
-                            style="width: 100%; border-radius: 0;">
-                    </div>
-                    <div style="display: flex; justify-content: flex-start; font-size: 0.8em; align-items: center;">17
-                        Maret 2021</div>
-                    <div
-                        style="line-height: 1.2em; width: 100%; font-size: 0.95em; margin-top: 0.8em; text-align: justify;">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam laoreet eget velit dui nisl
-                        aliquam tellus mi.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+
+            @endforeach
+            @if($berita->count() > 6)
+            <div class="col-lg-12 col-sm-12 mt-2">
+                <a href="{{url('/berita-selengkapnya')}}"
+                    style="background:#FF435E; color: white; padding: 0.3em 2em; font-size: 1.0em; border-radius: 2em; display:block; text-align:center;">Berita Selengkapnya
+                </a>
+            </div>
+            @endif
+            @else
+            <div class="col-lg-12 col-sm-12">
+                <div style="line-height: 1.2em; width: 100%; font-size: 2.2em; margin-top: 0.8em; text-align: center;">
+                    Belum Memiliki Berita
                 </div>
             </div>
+
+            @endif
+
+
         </div>
     </div>
 </section>

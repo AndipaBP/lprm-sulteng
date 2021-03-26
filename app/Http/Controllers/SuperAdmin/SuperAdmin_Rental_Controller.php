@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\Models\Kelurahan;
 use App\Models\Rental;
 use App\Models\Foto_rental;
+use App\Models\Video_rental;
 use App\Models\User;
 use App\Models\Mobil;
 use Alert;
@@ -28,8 +29,11 @@ class SuperAdmin_Rental_Controller extends Controller
 
     public function index(){
 
-        $rental = Rental::orderBy('nama','asc')->get();     
+        $rental = Rental::orderBy('nama','asc')->get();   
         
+     
+
+
         return view('users/superadmin/rental/index', compact('rental'));
     }
 
@@ -46,6 +50,7 @@ class SuperAdmin_Rental_Controller extends Controller
         $this->validate($request,[
 			'username' => 'required',
 			'password' => 'required',
+            'pemilik_rental' => 'required',
             'nama_rental' => 'required',
 			'no_hp' => 'required',
 			'alamat' => 'required',
@@ -72,6 +77,7 @@ class SuperAdmin_Rental_Controller extends Controller
         $rental->id = $rental_id;
         $rental->users_id = $users_id;
         $rental->nama = $request->nama_rental;
+        $rental->pemilik = $request->pemilik_rental;
         $rental->nomor_hp = $request->no_hp;
         $rental->alamat = $request->alamat;
         
@@ -95,8 +101,26 @@ class SuperAdmin_Rental_Controller extends Controller
         $user = User::where('id', $id)->first();
         $rental = Rental::where('users_id',$id)->first();
         $kel = Kelurahan::orderBy('kelurahan','asc')->get();
+
+        $daftar_video = Video_rental::where('rental_id', $rental->id)->first();
+        $video = '';
+
+        if($daftar_video){
+
+            $link =  $daftar_video->link;
+
+            if(preg_match('/youtube.com/', $link)){
+                $video = trim(substr($link, strpos($link, '=')+1));
+            }
+            else{
+                $video = trim(substr($link, strpos($link, '.be/')+4));
+            }
+
+        }
+
+       
     
-        return view('users/superadmin/rental/detail', compact('user','rental','kel'));
+        return view('users/superadmin/rental/detail', compact('user','rental','kel','video'));
     }
 
     public function detail_simpan_rental($id, $jenis, Request $request){
@@ -134,6 +158,11 @@ class SuperAdmin_Rental_Controller extends Controller
             if($request->get('nama_rental')){
 
                 $rental->nama = $request->nama_rental;
+            }
+
+            if($request->get('pemilik_rental')){
+
+                $rental->pemilik = $request->pemilik_rental;
             }
 
             if($request->get('no_hp')){
@@ -179,6 +208,18 @@ class SuperAdmin_Rental_Controller extends Controller
             Alert::success('Berhasil', 'Foto Rental Berhasil Ditambahkan');
             return redirect()->back();
         }
+        elseif($jenis == 'video-rental'){
+
+            $rental = Rental::where('users_id',$id)->first();
+
+            $video = new Video_rental;
+            $video->rental_id = $rental->id;
+            $video->link = $request->video_rental;
+            $video->save();
+
+            Alert::success('Berhasil', 'Video Rental Berhasil Ditambahkan');
+            return redirect()->back();
+        }
     }
 
     public function hapus_foto_detail_rental($id, Request $request){
@@ -193,13 +234,26 @@ class SuperAdmin_Rental_Controller extends Controller
 
     }
 
+    public function hapus_video_detail_rental($id, Request $request){
+        // dd($request->all());
+
+        Video_rental::find($request->id_hapus_video)->delete();
+
+        Alert::success('Berhasil', 'Video Berhasil Dihapus');
+        return redirect()->back();
+
+    }
+
     public function hapus_rental(Request $request){
 
 		$rental = Rental::where('users_id', $request->id_hapus)->first();
         
 		User::where('id', $request->id_hapus)->delete();
 		Rental::where('users_id', $request->id_hapus)->delete();
-        Foto_rental::find($rental->id)->delete();
+
+        if($rental->foto_rental->count() != '0'){
+            Foto_rental::find($rental->id)->delete();
+        }
 
         \Storage::disk('public')->deleteDirectory('upload/rental/'.$rental->id);
         

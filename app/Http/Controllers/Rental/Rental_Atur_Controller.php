@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\Models\Kelurahan;
 use App\Models\Rental;
 use App\Models\Foto_rental;
+use App\Models\Video_rental;
 use Session;
 use Alert;
 
@@ -20,9 +21,25 @@ class Rental_Atur_Controller extends Controller
 
         $rental = Rental::find(Session::get('rental_id'));
         // dd($rental);
+        $daftar_video = Video_rental::where('rental_id', Session::get('rental_id'))->first();
+
+        $video = '';
+
+        if($daftar_video){
+
+            $link =  $daftar_video->link;
+
+            if(preg_match('/youtube.com/', $link)){
+                $video = trim(substr($link, strpos($link, '=')+1));
+            }
+            else{
+                $video = trim(substr($link, strpos($link, '.be/')+4));
+            }
+
+        }
 
 
-        return view('users/rental/atur/index', compact('rental','kel'));
+        return view('users/rental/atur/index', compact('rental','kel','video'));
     }
 
     public function simpan_atur_rental($jenis, Request $request){
@@ -31,6 +48,11 @@ class Rental_Atur_Controller extends Controller
         if($jenis == 'informasi-rental'){
 
             $rental = Rental::where('id', Session::get('rental_id'))->first();
+
+            if($request->get('pemilik_rental')){
+
+                $rental->pemilik = $request->pemilik_rental;
+            }
 
             if($request->get('nama_rental')){
 
@@ -81,6 +103,16 @@ class Rental_Atur_Controller extends Controller
 
             return redirect()->back();
         }
+        elseif($jenis == 'video-rental'){
+
+            $video = new Video_rental;
+            $video->rental_id = Session::get('rental_id');
+            $video->link = $request->video_rental;
+            $video->save();
+
+            Alert::success('Berhasil', 'Video Rental Berhasil Ditambahkan');
+            return redirect()->back();
+        }
 
     }
 
@@ -95,5 +127,15 @@ class Rental_Atur_Controller extends Controller
         Alert::success('Berhasil', 'Foto Berhasil Dihapus');
 
         return redirect()->back();
+    }
+
+    public function hapus_video_atur_rental(Request $request){
+        // dd($request->all());
+        
+        Video_rental::find($request->id_hapus_video)->delete();
+
+        Alert::success('Berhasil', 'Video Berhasil Dihapus');
+        return redirect()->back();
+
     }
 }

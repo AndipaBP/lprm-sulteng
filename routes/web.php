@@ -55,6 +55,9 @@ Route::get('/daftar-rental/{id}', [Home_Rental_Controller::class, 'detail_rental
 Route::get('/daftar-rental/{id}/{no_plat}', [Home_Rental_Controller::class, 'mobil_detail_rental']);
 Route::get('/daftar-rental/{id}/{no_plat}', [Home_Rental_Controller::class, 'mobil_detail_rental']);
 
+Route::get('/berita-selengkpanya', [Home_Berita_Controller::class, 'index']);
+Route::get('/berita/{slug}', [Home_Berita_Controller::class, 'detail_berita']);
+
 Route::get('/tentang-kami', [Home_Profil_Controller::class, 'tentang_kami']);
 
 
@@ -94,6 +97,8 @@ Route::group(['middleware'=> 'auth'], function() {
         Route::get('/superadmin/rental/detail/{id}', [SuperAdmin_Rental_Controller::class, 'detail_rental']);
         Route::put('/superadmin/rental/detail/{id}/{jenis}/simpan', [SuperAdmin_Rental_Controller::class, 'detail_simpan_rental']);
         Route::delete('/superadmin/rental/detail/{id}/hapus-foto', [SuperAdmin_Rental_Controller::class, 'hapus_foto_detail_rental']);
+        Route::delete('/superadmin/rental/detail/{id}/hapus-video', [SuperAdmin_Rental_Controller::class, 'hapus_video_detail_rental']);
+
 
         Route::delete('/superadmin/rental/hapus', [SuperAdmin_Rental_Controller::class, 'hapus_rental']);
 
@@ -105,6 +110,7 @@ Route::group(['middleware'=> 'auth'], function() {
         Route::get('/superadmin/rental/{id}/mobil/{id2}', [SuperAdmin_Rental_Mobil_Controller::class, 'detail_mobil']);
         Route::put('/superadmin/rental/{id}/mobil/{id2}/{jenis}/simpan', [SuperAdmin_Rental_Mobil_Controller::class, 'simpan_detail_mobil']);
         Route::delete('/superadmin/rental/{id}/mobil/{id2}/hapus-foto', [SuperAdmin_Rental_Mobil_Controller::class, 'hapus_foto_detail_mobil']);
+        
 
 
         // Mobil
@@ -128,9 +134,9 @@ Route::group(['middleware'=> 'auth'], function() {
         Route::post('/superadmin/spesifikasi-mobil/tipe/simpan', [SuperAdmin_Tipe_Mobil_Controller::class, 'simpan_tipe']);
         Route::delete('/superadmin/spesifikasi-mobil/tipe/hapus', [SuperAdmin_Tipe_Mobil_Controller::class, 'hapus_tipe']);
 
-        Route::get('/superadmin/spesifikasi-mobil/fitur', [SuperAdmin_Fitur_Mobil_Controller::class, 'index']);
-        Route::post('/superadmin/spesifikasi-mobil/fitur/simpan', [SuperAdmin_Fitur_Mobil_Controller::class, 'simpan_fitur']);
-        Route::delete('/superadmin/spesifikasi-mobil/fitur/hapus', [SuperAdmin_Fitur_Mobil_Controller::class, 'hapus_fitur']);
+        // Route::get('/superadmin/spesifikasi-mobil/fitur', [SuperAdmin_Fitur_Mobil_Controller::class, 'index']);
+        // Route::post('/superadmin/spesifikasi-mobil/fitur/simpan', [SuperAdmin_Fitur_Mobil_Controller::class, 'simpan_fitur']);
+        // Route::delete('/superadmin/spesifikasi-mobil/fitur/hapus', [SuperAdmin_Fitur_Mobil_Controller::class, 'hapus_fitur']);
 
         // Berita
 
@@ -153,6 +159,8 @@ Route::group(['middleware'=> 'auth'], function() {
         Route::get('/rental/atur-rental', [Rental_Atur_Controller::class, 'index']);
         Route::put('/rental/atur-rental/{jenis}/simpan', [Rental_Atur_Controller::class, 'simpan_atur_rental']);
         Route::delete('/rental/atur-rental/hapus-foto', [Rental_Atur_Controller::class, 'hapus_foto_atur_rental']);
+        Route::delete('/rental/atur-rental/hapus-video', [Rental_Atur_Controller::class, 'hapus_video_atur_rental']);
+
 
         // Mobil
         Route::get('/rental/mobil', [Rental_Mobil_Controller::class, 'index']);
