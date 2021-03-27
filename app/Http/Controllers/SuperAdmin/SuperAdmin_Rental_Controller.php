@@ -125,7 +125,7 @@ class SuperAdmin_Rental_Controller extends Controller
 
     public function detail_simpan_rental($id, $jenis, Request $request){
 
-        // dd($request->all());
+        dd($request->all());
 
         if($jenis == 'akun'){
             
@@ -143,7 +143,7 @@ class SuperAdmin_Rental_Controller extends Controller
 
             if($request->get('password')){
 
-                $user->username = bcrypt($request->password);
+                $user->password = bcrypt($request->password);
             }
 
             $user->save();
