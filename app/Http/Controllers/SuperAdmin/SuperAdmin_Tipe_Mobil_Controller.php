@@ -29,12 +29,14 @@ class SuperAdmin_Tipe_Mobil_Controller extends Controller
         $this->validate($request,[
 			'tipe_mobil' => 'required',
             'merk_mobil' => 'required',
+            'jenis_mobil' => 'required',
 			'file_upload' => 'required'
 		]);
 
 		$tipe = new Tipe_mobil;
         $tipe->nama = $request->tipe_mobil;
         $tipe->merk_mobil_id = $request->merk_mobil;
+        $tipe->jenis_mobil_id = $request->jenis_mobil;
         $file = $request->file('file_upload');
         $filename = $request->tipe_mobil.".".\File::extension($file->getClientOriginalName());
         $tipe->foto  = $filename;
