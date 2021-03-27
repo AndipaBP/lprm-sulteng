@@ -125,7 +125,7 @@ class SuperAdmin_Rental_Controller extends Controller
 
     public function detail_simpan_rental($id, $jenis, Request $request){
 
-        dd($request->all());
+        // dd($request->all());
 
         if($jenis == 'akun'){
             
