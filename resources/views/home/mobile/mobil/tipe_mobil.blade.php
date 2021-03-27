@@ -180,7 +180,7 @@
 @section('content')
 <header class="style__Container-sc-3fiysr-0 header" style="background: #101a19;">
     <div class="style__Wrapper-sc-3fiysr-2 hBSxmh" style="display: flex; justify-content: space-between;">
-        <a style="padding-left: 1.5em;" href="{{url('/mobile')}}">
+        <a style="padding-left: 1.5em;" href="{{url('/mobile/mobil')}}">
             <img src="<?=url('/')?>/public/images/back_white.svg" style="width: 100%;">
         </a>
         <a id="defaultheader_logo" title="LPRM Sulteng" style="height:33px; display: flex;" href="{{url('/mobile')}}">
@@ -242,7 +242,8 @@
                     </div>
                     <div>
                         <div class="mb-1" style="text-align: right; font-size: 0.7em;">Mulai Dari...</div>
-                        <div style="text-align: right; font-weight: 600; line-height: 0.8em; font-size: 0.85em;">Rp. {{$row->harga_per_hari}}</div>
+                        <div style="text-align: right; font-weight: 600; line-height: 0.8em; font-size: 0.85em;">Rp.
+                            {{$row->harga_per_hari}}</div>
                         <div style="text-align: right; font-size: 0.7em;">/hari</div>
                         <div style="display: flex; justify-content: flex-end;">
                             <a href="{{url()->current()}}/{{$row->no_plat}}"
@@ -254,14 +255,14 @@
                     </div>
                 </div>
                 <hr style="width: 100%; margin:0;">
-                <div class="font-weight-bold" style="font-size: 1.0em; margin-top: 0.7em; text-align: right;">{{$row->no_plat}}
+                <div class="font-weight-bold" style="font-size: 1.0em; margin-top: 0.7em; text-align: right;">
+                    {{$row->no_plat}}
                 </div>
-
-
-                @endforeach
-
             </div>
+            @endforeach
+
         </div>
+    </div>
     </div>
 </main>
 

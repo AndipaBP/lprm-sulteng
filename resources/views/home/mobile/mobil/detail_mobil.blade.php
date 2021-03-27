@@ -242,14 +242,6 @@
             <img src="<?=url('/')?>/public/images/icon_svg/car_pink.svg" style="width: 1em;">&nbsp;<span
                 style="padding-top: 0.2em;">Tahun {{$mobil->tahun_mobil}} atau setelahnya</span>&nbsp;&nbsp;&nbsp;
         </div>
-        <div style="font-size: 0.7em; color: #959595; margin-top: 1em;">Fitur</div>
-        <div style="display: flex;">
-            @foreach($mobil->fitur_mobil as $row)
-            <div
-                style="border: #FF435E; background: #FF435E; color: white; font-size: 0.7em; padding: 0.3em 1em; border-radius: 1em; margin-right: 0.5em;">
-                {{$row->fitur->nama}}</div>
-            @endforeach
-        </div>
         <div style="font-size: 0.7em; color: #959595; margin-top: 1em;">Status</div>
         <div style="display: flex;">
             <div

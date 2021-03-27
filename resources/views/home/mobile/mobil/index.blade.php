@@ -270,7 +270,7 @@
                         </div>
 
                         <div style="display: flex; justify-content:flex-end; margin-top: 0.2em;">
-                            <a href="{{url()->current()}}/mobil/{{strtolower($row->nama)}}"
+                            <a href="{{url()->current()}}/{{strtolower($row->nama)}}"
                                 style="background:#FF435E; color: white; padding: 0.3em 2em; font-size: 0.9em; border-radius: 2em;">Pilih</a>
                         </div>
                     </div>
