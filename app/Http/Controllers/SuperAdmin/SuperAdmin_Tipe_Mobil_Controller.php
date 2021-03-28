@@ -56,7 +56,7 @@ class SuperAdmin_Tipe_Mobil_Controller extends Controller
         $tipe = Tipe_mobil::where('id', $request->id_hapus)->first();
         \Storage::disk('public')->delete('images/tipe_mobil/'.$tipe->foto);
 
-        Tipe_mobil::find($request->id_hapus)->delete();
+        Tipe_mobil::where('id',$request->id_hapus)->delete();
 
         Alert::success('Berhasil', 'Tipe Berhasil Dihapus');
         return redirect()->back();

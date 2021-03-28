@@ -122,7 +122,7 @@ class Rental_Atur_Controller extends Controller
         $foto_rental = Foto_rental::where('id', $request->id_hapus)->first();
 
         \Storage::disk('public')->delete('upload/rental/'.Session::get('rental_id').'/img/'.$foto_rental->foto);
-        Foto_rental::find($request->id_hapus)->delete();
+        Foto_rental::where('id', $request->id_hapus)->delete();
 
         Alert::success('Berhasil', 'Foto Berhasil Dihapus');
 
@@ -132,10 +132,10 @@ class Rental_Atur_Controller extends Controller
     public function hapus_video_atur_rental(Request $request){
         // dd($request->all());
         
-        Video_rental::find($request->id_hapus_video)->delete();
+        Video_rental::where('id', $request->id_hapus_video)->delete();
 
         Alert::success('Berhasil', 'Video Berhasil Dihapus');
         return redirect()->back();
-
+ 
     }
 }

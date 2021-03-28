@@ -114,7 +114,7 @@ class SuperAdmin_Mobil_Controller extends Controller
 
         $foto_mobil = Foto_mobil::where('id', $request->id_hapus)->first();
         \Storage::disk('public')->delete('upload/rental/'.$request->rental_id.'/img/mobil/'.$id.'/'.$foto_mobil->foto);
-        Foto_mobil::find($request->id_hapus)->delete();
+        Foto_mobil::where('id',$request->id_hapus)->delete();
 
         Alert::success('Berhasil', 'Foto Berhasil Dihapus');
         return redirect()->back();

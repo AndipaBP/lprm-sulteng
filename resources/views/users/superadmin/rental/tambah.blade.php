@@ -39,7 +39,7 @@ Tambah Rental
                             <div class="row">
                                 <div class="col-5">
                                     <div class="form-group">
-                                        <label for="username">No. ID Regitrasi / Username<span
+                                        <label for="username">No. ID Regitrasi<span
                                                 class="badge badge-danger ml-2">Wajib</span></label>
                                         <input type="text" class="form-control" id="username" name="username"
                                             onkeypress="return AvoidSpace(event)" required placeholder="Username...">

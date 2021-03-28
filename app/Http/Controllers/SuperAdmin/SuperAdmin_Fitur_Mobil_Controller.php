@@ -35,7 +35,7 @@ class SuperAdmin_Fitur_Mobil_Controller extends Controller
 
     public function hapus_fitur(Request $request){
 
-        Fitur::find($request->id_hapus)->delete();
+        Fitur::where('id',$request->id_hapus)->delete();
 
         Alert::success('Berhasil', 'Fitur Berhasil Dihapus');
 

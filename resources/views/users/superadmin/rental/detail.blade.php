@@ -60,7 +60,7 @@
                                     <div class="row">
                                         <div class="col-5">
                                             <div class="form-group">
-                                                <label for="username">No. ID Regitrasi / Username</label>
+                                                <label for="username">No. ID Regitrasi</label>
                                                 <input type="text" class="form-control" id="username" name="username"
                                                     onkeypress="return AvoidSpace(event)" value="{{$user->username}}"
                                                     required placeholder="Username...">

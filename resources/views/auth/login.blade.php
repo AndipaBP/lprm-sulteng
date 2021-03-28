@@ -60,7 +60,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control form-control-lg" placeholder="Username"
+                                    <input type="text" class="form-control form-control-lg" placeholder="No. ID Regitrasi"
                                         aria-label="Username" aria-describedby="basic-addon1" name="username" required>
                                 </div>
                                 <div class="input-group mb-3">
@@ -71,14 +71,14 @@
                                     <input type="password" class="form-control form-control-lg" placeholder="Password"
                                         aria-label="Password" name="password" aria-describedby="basic-addon1" required>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <div class="col-md-12">
                                         <div class="custom-control custom-checkbox d-flex align-items-center">
                                             <a href="javascript:void(0)" id="to-recover" class="text-dark ml-auto"><i
                                                     class="fa fa-lock mr-1"></i> Lupa Password ?</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group text-center">
                                     <div class="col-xs-12 pb-3">
                                         <button class="btn btn-block btn-lg btn-danger" type="submit">Masuk</button>

@@ -44,9 +44,13 @@ Pengaturan Akun
                                     <div class="row">
                                         <div class="col-5">
                                             <div class="form-group">
+                                                @if(Session::get('level_akses') == 'Superadmin')
                                                 <label for="username">Username</label>
+                                                @else
+                                                <label for="username">No. ID Regitrasi</label>
+                                                @endif
                                                 <input type="text" class="form-control" id="username" name="username"
-                                                    onkeypress="return AvoidSpace(event)" value="{{$user->username}}"
+                                                    onkeypress="return AvoidSpace(event)" value="{{$user->username}}" disabled
                                                     required placeholder="Username...">
                                                 <small class="form-text text-muted">Tanpa menggunakan spasi</small>
                                             </div>

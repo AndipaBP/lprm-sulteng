@@ -51,7 +51,7 @@ class SuperAdmin_Jenis_Mobil_Controller extends Controller
         $jenis = Jenis_mobil::where('id', $request->id_hapus)->first();
         \Storage::disk('public')->delete('images/jenis_mobil/'.$jenis->foto);
 
-        Jenis_mobil::find($request->id_hapus)->delete();
+        Jenis_mobil::where('id', $request->id_hapus)->delete();
 
         Alert::success('Berhasil', 'Jenis Berhasil Dihapus');
         return redirect()->back();

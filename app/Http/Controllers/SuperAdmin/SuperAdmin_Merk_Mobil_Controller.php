@@ -48,7 +48,7 @@ class SuperAdmin_Merk_Mobil_Controller extends Controller
 
         $merk = Merk_mobil::where('id', $request->id_hapus)->first();
         \Storage::disk('public')->delete('images/merk_mobil/'.$merk->foto);
-        Merk_mobil::find($request->id_hapus)->delete();
+        Merk_mobil::where('id',$request->id_hapus)->delete();
         Alert::success('Berhasil', 'Merk Berhasil Dihapus');
         return redirect()->back();
 

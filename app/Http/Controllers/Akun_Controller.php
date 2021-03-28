@@ -26,12 +26,6 @@ class Akun_Controller extends Controller
 
         $user = User::find(Session::get('users_id'));
             
-        if($request->get('username')){
-
-            $user->username = $request->username;
-            Session::put('username', $request->username);
-        }
-
         if($request->get('email')){
 
             $user->email = $request->email;

@@ -227,7 +227,7 @@ class SuperAdmin_Rental_Controller extends Controller
 
         $foto_rental = Foto_rental::where('id', $request->id_hapus)->first();
         \Storage::disk('public')->delete('upload/rental/'.$request->rental_id.'/img/'.$foto_rental->foto);
-        Foto_rental::find($request->id_hapus)->delete();
+        Foto_rental::where('id',$request->id_hapus)->delete();
 
         Alert::success('Berhasil', 'Foto Berhasil Dihapus');
         return redirect()->back();
@@ -237,7 +237,7 @@ class SuperAdmin_Rental_Controller extends Controller
     public function hapus_video_detail_rental($id, Request $request){
         // dd($request->all());
 
-        Video_rental::find($request->id_hapus_video)->delete();
+        Video_rental::where('id',$request->id_hapus_video)->delete();
 
         Alert::success('Berhasil', 'Video Berhasil Dihapus');
         return redirect()->back();
@@ -252,7 +252,7 @@ class SuperAdmin_Rental_Controller extends Controller
 		Rental::where('users_id', $request->id_hapus)->delete();
 
         if($rental->foto_rental->count() != '0'){
-            Foto_rental::find($rental->id)->delete();
+            Foto_rental::where('rental_id', $rental->id)->delete();
         }
 
         \Storage::disk('public')->deleteDirectory('upload/rental/'.$rental->id);
