@@ -169,6 +169,10 @@
                                     class="hide-menu">Daftar Mobil</span></a></li>
 
                         @endif
+                        <div class="devider"></div>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{url('/logout')}}" aria-expanded="false"><i
+                                    class="fa fa-power-off"></i><span class="hide-menu">Keluar</span></a></li>
 
                     </ul>
                 </nav>
