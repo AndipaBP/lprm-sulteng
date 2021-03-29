@@ -22,7 +22,7 @@ Dashboard
         <div class="col-12">
             <div class="row">
                 @foreach($mobil as $row)
-                <div class="col-4">
+                <div class="col-lg-4 col-md-8 col-sm-12">
                     @if($row->foto_mobil->count() == '0')
                     <div
                                 style='height: 12em; margin-bottom: 1.5em; background: linear-gradient(180deg, rgba(16, 26, 25, 0) 8%, #111B1A 100%), url("<?=url('/')?>/public/images/tipe_mobil/{{$row->tipe_mobil->foto}}"); filter: drop-shadow(1px 1px 5px #000000); border-radius: 12px; display: flex; align-items: flex-start; flex-direction: column; justify-content: flex-end; padding-right: 1em; background-size: cover;'>

@@ -301,7 +301,19 @@ function tgl_indo($tanggal){
 
 @section('footer-scripts')
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
 <script>
+if (Modernizr.mq('(max-width: 576px)')) {
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+} else {
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 30,
@@ -310,6 +322,9 @@ function tgl_indo($tanggal){
             prevEl: '.swiper-button-prev',
         },
     });
+}
+
+
 
 </script>
 

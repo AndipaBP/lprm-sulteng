@@ -27,7 +27,12 @@ function tgl_indo($tanggal){
 ?>
 
 @section('header-scripts')
+<style>
+.text-white a {
+	color: black !important;
+}
 
+</style>
 @endsection
 
 @section('content')
@@ -39,7 +44,7 @@ function tgl_indo($tanggal){
         <div class="row">
             @if($berita->count() != '0')
             @foreach($berita as $row)
-            <div class="col-lg-4 col-sm-6 mb-2">
+            <div class="col-lg-4 col-sm-12 mb-2">
                 <div class="concept-item" style="display: flex; justify-content: center; flex-direction: column;">
                     <div style="width: 100%;padding-top: 0.2em; margin-bottom: 0em; border-radius: 1em; padding: 0;">
                         <img src="<?=url('/')?>/public/upload/berita/{{$row->id}}/{{$row->foto}}" alt=""
@@ -52,7 +57,7 @@ function tgl_indo($tanggal){
                     <div
                         style="line-height: 1.2em; width: 100%; font-size: 0.95em; margin-top: 0.8em; text-align: justify;">
                         <a href="{{url('/berita/')}}/{{$row->slug}}"
-                            style="background:#FF435E; color: white; padding: 0.3em 2em; font-size: 0.7em; border-radius: 2em;">Baca
+                            style="background:#FF435E; color: white !important; padding: 0.3em 2em; font-size: 0.7em; border-radius: 2em;">Baca
                             Sekarang
                         </a>
                     </div>
@@ -63,7 +68,7 @@ function tgl_indo($tanggal){
             @endif
         </div>
         <div class="d-flex justify-content-center">
-            {!! $berita->links() !!}
+            {{ $berita->links() }}
         </div>
     </div>
 </section>

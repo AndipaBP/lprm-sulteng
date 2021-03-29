@@ -6,7 +6,12 @@ LPRM SULTENG
 
 
 @section('header-scripts')
+<style>
+.text-white a {
+	color: black !important;
+}
 
+</style>
 @endsection
 
 @section('content')
@@ -17,7 +22,7 @@ LPRM SULTENG
         </div>
         <div class="row">
             @foreach($rental as $row)
-            <div class="col-4 mb-3">
+            <div class="col-lg-4 col-sm-12 mb-3">
                 <div class=""
                     style="padding: 1.2em 1.2em 1.2em 1.2em;background: white; border-radius: 12px; color:black;">
                     <div class="swiper-container">
@@ -57,7 +62,7 @@ LPRM SULTENG
                                 <i class="fas fa-star star-rating"></i>
                                 <i class="far fa-star star-rating"></i>
                             </div>
-                            <a href="{{url()->current()}}/{{strtolower($row->id)}}" class="" style="background:#FF435E; color: white; padding: 0.3em 2em; font-size: 0.9em; border-radius: 2em;">Selengkapnya</a>
+                            <a href="{{url()->current()}}/{{strtolower($row->id)}}" class="" style="background:#FF435E; color: white !important; padding: 0.3em 2em; font-size: 0.9em; border-radius: 2em;">Selengkapnya</a>
                         </div>
                     </div>
                     <hr>
@@ -71,7 +76,7 @@ LPRM SULTENG
             @endforeach
         </div>
         <div class="d-flex justify-content-center">
-            {!! $rental->links() !!}
+            {{$rental->links() }}
         </div>
     </div>
 </section>

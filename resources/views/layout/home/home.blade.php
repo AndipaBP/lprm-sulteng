@@ -69,10 +69,6 @@
 
 <body>
 
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
     <header class="header-section clearfix" style="background: #101A19;">
         <a href="{{url('/')}}" class="site-logo" style="padding: 1em 0.6em;">
             <img src="<?=url('/')?>/public/images/logo/logo.svg" alt="">

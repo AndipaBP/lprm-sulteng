@@ -6,6 +6,12 @@
 
 
 @section('header-scripts')
+<style>
+.text-white a {
+	color: black !important;
+}
+
+</style>
 
 @endsection
 
@@ -45,7 +51,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-lg-6 mb-3">
                             <div style="display: flex; align-items: center;color:black;">
                                 <div style="width: 20%;">
                                     <img src="<?=url('/')?>/public/images/rental.svg" style="width: 100%;">
@@ -70,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 text-dark">
+                        <div class="col-lg-6 text-dark">
                             <div style="font-weight: 600; font-size: 1.0em;">Alamat Rental Mobil</div>
                             <div style="font-weight: 600; font-size: 0.8em;">
                                 {{$rental->kelurahan->kelurahan}},
@@ -104,8 +110,8 @@
             </div>
         </div>
         <div class="row mt-3">
-            @foreach($mobil as $mobil)
-            <div class="col-4">
+            @foreach($daftar_mobil as $mobil)
+            <div class="col-lg-4">
                 <div
                     style='margin-bottom: 1em; background: white;  border-radius: 12px; padding: 1em 1.5em; background-size: cover; color:black;'>
                     <div class="swiper-container">
@@ -159,7 +165,7 @@
                             <div class="text-dark" style="text-align: right; font-size: 0.7em;">/hari</div>
                             <div style="display: flex; justify-content: flex-end;">
                                 <a href="{{url()->current()}}/{{$mobil->no_plat}}"
-                                    style="background:#FF435E; color: white; padding: 0.3em 2em; font-size: 0.7em; border-radius: 2em;">Detail</a>
+                                    style="background:#FF435E; color: white !important; padding: 0.3em 2em; font-size: 0.7em; border-radius: 2em;">Detail</a>
                             </div>
                         </div>
                     </div>
@@ -172,6 +178,9 @@
                 </div>
             </div>
             @endforeach
+        </div>
+        <div class="d-flex justify-content-center">
+            {{ $daftar_mobil->links() }}
         </div>
     </div>
 </section>

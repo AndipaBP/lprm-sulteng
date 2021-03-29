@@ -29,7 +29,7 @@ class Home_Rental_Controller extends Controller
 
         if($rental){
 
-            $mobil = Mobil::where('rental_id', $id)->paginate(12);
+            $daftar_mobil = Mobil::where('rental_id', $id)->paginate(12);
 
             $daftar_video = Video_rental::where('rental_id', $id)->first();
 
@@ -48,7 +48,7 @@ class Home_Rental_Controller extends Controller
     
             }
 
-            return view('home/web/daftar_rental/detail', compact('rental','mobil','video'));
+            return view('home/web/daftar_rental/detail', compact('rental','daftar_mobil','video'));
 
         }
         else{

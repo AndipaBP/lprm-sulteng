@@ -20,7 +20,7 @@
             @foreach($tipe as $tipe)
             @if($tipe->mobil->count() != '0')
             @foreach($tipe->mobil as $mobil)
-            <div class="col-4">
+            <div class="col-lg-4">
                 <div
                     style='margin-bottom: 1em; background: white; border-radius: 12px; padding: 1em 1.5em; background-size: cover; color:black;'>
                     <div class="swiper-container">

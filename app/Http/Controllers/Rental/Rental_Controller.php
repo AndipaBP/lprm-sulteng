@@ -15,7 +15,7 @@ class Rental_Controller extends Controller
 
         // $tipe = Tipe_mobil::orderBy('nama','asc')->get();
 
-        $mobil = Mobil::orderBy('status', 'asc')->get();
+        $mobil = Mobil::orderBy('tipe_mobil_id', 'asc')->where('rental_id', Session::get('rental_id'))->get();
 
         return view('users/rental/dashboard', compact('mobil'));
     }

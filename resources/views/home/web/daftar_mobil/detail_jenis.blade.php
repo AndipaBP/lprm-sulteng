@@ -17,7 +17,7 @@
             <h2>{{$jenis->nama}} | {{$mobil->no_plat}}</h2>
         </div>
         <div class="row">
-            <div class="col-7">
+            <div class="col-lg-7 mb-3">
                 <div class="" style="padding: 1.2em 1.2em 1.2em 1.2em;background: white; border-radius: 12px;">
                     <div class="p-2">
                         <div class="swiper-container">
@@ -25,10 +25,9 @@
                                 @if($mobil->foto_mobil->count() == '0')
                                 <div class="swiper-slide">
                                     <div
-                                        style='height: 20em; margin-bottom: 1.5em; background: linear-gradient(180deg, rgba(16, 26, 25, 0) 8%, #111B1A 100%), url("<?=url('/')?>/public/images/tipe_mobil/{{$mobil->tipe_mobil->foto}}"); filter: drop-shadow(1px 1px 5px #000000); border-radius: 12px; display: flex; align-items: flex-start; flex-direction: column; justify-content: flex-end; padding-right: 1em; background-size: cover; width: 100%;'>
+                                        style='height: 20em; margin-bottom: 1.5em; background: linear-gradient(180deg, rgba(16, 26, 25, 0) 8%, #111B1A 100%), url("<?=url('/')?>/public/images/default/image_not_available.png"); filter: drop-shadow(1px 1px 5px #000000); border-radius: 12px; display: flex; align-items: flex-start; flex-direction: column; justify-content: flex-end; padding-right: 1em; background-size: cover; width: 100%;'>
                                     </div>
                                 </div>
-
                                 @else
                                 @foreach($mobil->foto_mobil as $row)
                                 <div class="swiper-slide">
@@ -70,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="col-5">
+            <div class="col-lg-5">
                 <div class=""
                     style="padding: 1.2em 1.2em 1.2em 1.2em;background: white; border-radius: 12px; color:black;">
                     <div style="display: flex; align-items: center;">
@@ -80,14 +79,17 @@
                         <div style="width: 80%; padding-left: 0.5em;">
                             <div style="font-size: 0.8em; line-height: 0.9em;">Disediakan Oleh</div>
                             <div style="font-weight: 600;">{{$mobil->rental->nama}}</div>
-                            <div style="padding: 0; margin: 0; font-size: 0.7em; line-height: 1.5em; margin-top: 0em; margin-bottom: 0.5em;">
+                            <div
+                                style="padding: 0; margin: 0; font-size: 0.7em; line-height: 1.5em; margin-top: 0em; margin-bottom: 0.5em;">
                                 <i class="fas fa-star star-rating"></i>
                                 <i class="fas fa-star star-rating"></i>
                                 <i class="fas fa-star star-rating"></i>
                                 <i class="fas fa-star star-rating"></i>
                                 <i class="far fa-star star-rating"></i>
                             </div>
-                            <a href="{{url('/daftar-rental')}}/{{strtolower($mobil->rental->id)}}" class="" style="background:#FF435E; color: white; padding: 0.3em 2em; font-size: 0.9em; border-radius: 2em;">Lihat Rental</a>
+                            <a href="{{url('/daftar-rental')}}/{{strtolower($mobil->rental->id)}}" class=""
+                                style="background:#FF435E; color: white; padding: 0.3em 2em; font-size: 0.9em; border-radius: 2em;">Lihat
+                                Rental</a>
                         </div>
                     </div>
                     <hr>
@@ -101,7 +103,8 @@
                         style="background: #FF435E; padding: 0.3em; text-align: center; color: white; margin-bottom: 0.5em; margin-top: 1em; border-radius:15px;">
                         Belum Memiliki Lokasi di Peta</div>
                     @else
-                    <a href="https://www.google.com/maps/search/?api=1&query={{$mobil->rental->lat}},{{$mobil->rental->lng}}">
+                    <a
+                        href="https://www.google.com/maps/search/?api=1&query={{$mobil->rental->lat}},{{$mobil->rental->lng}}">
                         <div
                             style="background: #FF435E; padding: 0.3em; text-align: center; color: white; margin-bottom: 0.5em; margin-top: 1em; border-radius:15px;">
                             Lihat Lokasi di Peta</div>
