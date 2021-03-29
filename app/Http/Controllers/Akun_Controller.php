@@ -33,7 +33,7 @@ class Akun_Controller extends Controller
 
         if($request->get('password')){
 
-            $user->username = bcrypt($request->password);
+            $user->password = bcrypt($request->password);
         }
 
         $user->save();
