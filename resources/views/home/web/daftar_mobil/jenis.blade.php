@@ -74,7 +74,7 @@
                             <div class="mb-1 text-dark" style="text-align: right; font-size: 0.7em;">Mulai Dari...</div>
                             <div class="text-dark"
                                 style="text-align: right; font-weight: 600; line-height: 0.8em; font-size: 0.85em;">Rp.
-                                {{$mobil->harga_per_hari}}</div>
+                                {{number_format($mobil->harga_per_hari,0,',','.')}}</div>
                             <div class="text-dark" style="text-align: right; font-size: 0.7em;">/hari</div>
                             <div style="display: flex; justify-content: flex-end;">
                                 <a href="{{url()->current()}}/{{$mobil->no_plat}}"

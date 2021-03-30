@@ -70,6 +70,8 @@ class SuperAdmin_Mobil_Controller extends Controller
         }
         elseif($jenis == 'informasi-mobil'){
 
+            $harga = trim(str_replace('.', '', $request->harga_per_hari), "Rp ");
+
             $mobil = Mobil::where('id', $id)->first();
             $mobil->tipe_mobil_id = $request->tipe_mobil;
             $mobil->tahun_mobil = $request->tahun_mobil;
@@ -77,7 +79,7 @@ class SuperAdmin_Mobil_Controller extends Controller
             if($request->kapasitas_mobil){
                 $mobil->kapasitas = $request->kapasitas_mobil;
             }
-            $mobil->harga_per_hari = $request->harga_per_hari;
+            $mobil->harga_per_hari = $harga;
             $mobil->status = $request->status_mobil;
             $mobil->save();
 

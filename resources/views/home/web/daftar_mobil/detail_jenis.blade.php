@@ -64,7 +64,7 @@
                     </div>
                     <div
                         style=" background: #FF435E; padding: 0.6em; text-align: center; color: white; margin-bottom: 0.5em; margin-top: 1em; border-radius:15px;">
-                        Mulai Dari Rp. {{$mobil->harga_per_hari}} Per/Hari
+                        Mulai Dari Rp. {{number_format($mobil->harga_per_hari,0,',','.')}} Per/Hari
                     </div>
                 </div>
             </div>

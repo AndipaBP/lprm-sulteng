@@ -55,8 +55,10 @@ class Rental_Mobil_Controller extends Controller
 
 		]);
 
-        $mobil_id = $this->autocode('mobil');  
-    
+        $mobil_id = $this->autocode('mobil');
+        
+        $harga = trim(str_replace('.', '', $request->harga_per_hari), "Rp ");
+        
 		$mobil = new Mobil;
         $mobil->id = $mobil_id;
         $mobil->pemilik = $request->nama_pemilik;
@@ -68,7 +70,7 @@ class Rental_Mobil_Controller extends Controller
         if($request->kapasitas_mobil){
             $mobil->kapasitas = $request->kapasitas_mobil;
         }
-        $mobil->harga_per_hari = $request->harga_per_hari;
+        $mobil->harga_per_hari = $harga;
         $mobil->status = "ready";
         $mobil->rental_id = Session::get('rental_id');
         $mobil->save();
@@ -127,6 +129,9 @@ class Rental_Mobil_Controller extends Controller
         elseif($jenis == 'informasi-mobil'){
 
             $mobil = Mobil::where('rental_id', Session::get('rental_id'))->where('id', $id)->first();
+
+            $harga = trim(str_replace('.', '', $request->harga_per_hari), "Rp ");
+
             $mobil->tipe_mobil_id = $request->tipe_mobil;
             $mobil->tahun_mobil = $request->tahun_mobil;
             $mobil->no_plat = $request->plat_mobil;
@@ -137,7 +142,7 @@ class Rental_Mobil_Controller extends Controller
 
             }
             
-            $mobil->harga_per_hari = $request->harga_per_hari;
+            $mobil->harga_per_hari = $harga;
             $mobil->status = $request->status_mobil;
             $mobil->save();
 
